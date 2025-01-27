@@ -1,68 +1,211 @@
-<html>
-<body>
-  <h1>アマチュア無線機</h1>
-  <br>
-  <iframe src="./radio.html" style="width: 100%; height: 54vh">    
-  </iframe>
-  <br>
-  <h2>アマチュア無線機について</h2>
-  <ul>
-    <li>アマチュア無線とは、免許を取得した個人が趣味や技術研究を目的として使用する無線のことを指す。
-    <li>今のようにスマートフォンなどで気軽にコミュニケーションをとることができない時代に、見知らぬ人と通信を楽しむことができると人気だった。
-    <li>UECミュージアムでは、アマチュア無線発展の歴史を飾った数々の貴重な機器を展示している。
-  </ul>
-  <h2>クイズ</h2>
-  アマチュア無線が特に活躍するシチュエーションはどれでしょうか？<br>
-  ヒント：3Dモデルをよく見ると...?<br>
-
-  <button class="block-left-align" style = "position:static; width:400px; height:25px; font-size:15px;" onclick="showResult(false)"><span>1.友人と日常的な会話をする時</span></button><br>
-  <button class="block-left-align" style = "position:static; width:400px; height:25px; font-size:15px;" onclick="showResult(false)"><span>2.短い距離でのデータ通信を行う時</span></button><br>
-  <button class="block-left-align" style = "position:static; width:400px; height:25px; font-size:15px;" onclick="showResult(true)"><span>3.大規模な災害が発生し、通常の通信手段が使えない時</span></button><br>
-  <button class="block-left-align" style = "position:static; width:400px; height:25px; font-size:15px;" onclick="showResult(false)"><span>4.スマートフォンの通信料金を節約したい時</span></button><br>
-  <div id="quizAnswer" class="info-box">
-    アマチュア無線は、災害時に通常の通信手段が機能しない場合でも、自前の設備を利用して通信を確保できます。このため、緊急時の連絡や情報交換で非常に重要な役割を果たします。
-  </div>
-
-  <script>
-    function showResult(isCorrect) {
-        var infoBox = document.getElementById("quizAnswer");
-
-        if (isCorrect) {
-            infoBox.innerHTML = "<h3>正解！</h3>アマチュア無線は、災害時に通常の通信手段が機能しない場合でも、自前の設備を利用して通信を確保できます。このため、緊急時の連絡や情報交換で非常に重要な役割を果たします。";
-            infoBox.classList.remove("incorrect");
-            infoBox.classList.add("correct");
-        } else {
-            infoBox.innerHTML = "<h3>不正解</h3>";
-            infoBox.classList.remove("correct");
-            infoBox.classList.add("incorrect");
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アマチュア無線機 | UECミュージアム</title>
+    <style>
+        /* 全体のスタイル設定 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
         }
 
-        infoBox.style.display = "block";  // 表示
-      }
-  </script>
+        h1 {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            margin: 0;
+            font-size: 24px;
+        }
 
-  <style>
-    .block-left-align span {
-        display: block;
-        text-align: left;
-    }
+        h2 {
+            color: #004080;
+            border-bottom: 2px solid #004080;
+            display: inline-block;
+            margin-top: 30px;
+        }
 
-    .info-box{
-      display: none;
-      padding: 10px;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 5px double #333333;
-      background-color: #ffaaaa;
-    }
+        p {
+            font-size: 18px;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
 
-    .correct {
-      background-color: #aaffaa; /* 正解時の背景色（緑） */
-    }
+        ul {
+            text-align: left;
+            display: inline-block;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
 
-    .incorrect {
-      background-color: #ffaaaa; /* 不正解時の背景色（赤） */
-    }
- </style>
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        iframe {
+            width: 98%;
+            height: 54vh;
+            border: 3px solid #004080;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-section {
+            margin-top: 30px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
+        .quiz-section p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .block-left-align {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            height: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .block-left-align:hover {
+            background-color: #005bb5;
+        }
+
+        .info-box {
+            display: none;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .correct {
+            background-color: #aaffaa;
+            border: 2px solid #008000;
+            color: #006400;
+        }
+
+        .incorrect {
+            background-color: #ffaaaa;
+            border: 2px solid #cc0000;
+            color: #800000;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #004080;
+            color: white;
+        }
+
+        .footer a {
+            color: #ffdd00;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #0073e6;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>アマチュア無線機 展示ガイド</h1>
+    
+    <p>このページでは、アマチュア無線機の歴史や特徴について詳しく学ぶことができます。</p>
+
+    <iframe src="./radio.html" loading="lazy"></iframe>
+
+    <h2>アマチュア無線機について</h2>
+    <ul>
+        <li>アマチュア無線とは、免許を取得した個人が趣味や技術研究を目的として使用する無線のことを指す。</li>
+        <li>かつては、遠くの人と通信を楽しむために非常に人気があった。</li>
+        <li>UECミュージアムでは、無線発展の歴史を物語る貴重な機器を展示しています。</li>
+    </ul>
+
+    <div class="quiz-section">
+        <h2>クイズ</h2>
+        <p>アマチュア無線が特に活躍するシチュエーションはどれでしょうか？</p>
+        <p>ヒント：3Dモデルをよく見ると…?</p>
+
+        <button class="block-left-align" onclick="showResult(false)">1. 友人と日常的な会話をする時</button>
+        <button class="block-left-align" onclick="showResult(false)">2. 短い距離でのデータ通信を行う時</button>
+        <button class="block-left-align" onclick="showResult(true)">3. 大規模な災害が発生し、通常の通信手段が使えない時</button>
+        <button class="block-left-align" onclick="showResult(false)">4. スマートフォンの通信料金を節約したい時</button>
+
+        <div id="quizAnswer" class="info-box"></div>
+    </div>
+
+    <div class="footer">
+        <p>実物を間近で見たり、他にも多くの貴重な展示を体験してみませんか？<br>
+        詳しくは、UECミュージアムの公式ウェブサイトをご覧ください。</p>
+        <a href="https://www.museum.uec.ac.jp" class="footer-button" target="_blank">公式ウェブサイトへ</a>
+    </div>
+
+    <script>
+        function showResult(isCorrect) {
+            var infoBox = document.getElementById("quizAnswer");
+
+            if (isCorrect) {
+                infoBox.innerHTML = "<h3>正解！</h3>災害時に自前の設備で通信を確保できる点が重要です。";
+                infoBox.classList.remove("incorrect");
+                infoBox.classList.add("correct");
+            } else {
+                infoBox.innerHTML = "<h3>不正解</h3>";
+                infoBox.classList.remove("correct");
+                infoBox.classList.add("incorrect");
+            }
+
+            infoBox.style.display = "block"; 
+        }
+    </script>
+
 </body>
 </html>
