@@ -28,11 +28,11 @@
         var infoBox = document.getElementById("quizAnswer");
 
         if (isCorrect) {
-            infoBox.innerHTML = "正解！アマチュア無線は、災害時に通常の通信手段が機能しない場合でも、自前の設備を利用して通信を確保できます。このため、緊急時の連絡や情報交換で非常に重要な役割を果たします。";
+            infoBox.innerHTML = "<h3>正解！</h3>アマチュア無線は、災害時に通常の通信手段が機能しない場合でも、自前の設備を利用して通信を確保できます。このため、緊急時の連絡や情報交換で非常に重要な役割を果たします。";
             infoBox.classList.remove("incorrect");
             infoBox.classList.add("correct");
         } else {
-            infoBox.innerHTML = "不正解";
+            infoBox.innerHTML = "<h3>不正解</h3>";
             infoBox.classList.remove("correct");
             infoBox.classList.add("incorrect");
         }
