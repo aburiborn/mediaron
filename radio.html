@@ -7,9 +7,9 @@
   </head>
 <body>
 
-  <a-scene stats loading-screen="dotsColor: gray; backgroundColor: lightgray" light="defaultLightsEnabled: false">
+  <a-scene loading-screen="dotsColor: gray; backgroundColor: lightgray" light="defaultLightsEnabled: false">
     <!-- aframe-orbit-controlsのプロパティを記述 -->
-    <a-entity light="type: ambient; color: #ffffff; intensity: 3.0" position="-1 1 0" camera look-controls orbit-controls="target: 0 1.6 -0.5; maxPolarAngle:180; minDistance: 0.5; maxDistance: 200; initialPosition: 0 0 30"></a-entity>
+    <a-entity light="type: ambient; color: #ffffff; intensity: 10.0" position="-1 1 0" camera look-controls orbit-controls="target: 0 1.6 -0.5; maxPolarAngle:180; minDistance: 0.5; maxDistance: 200; initialPosition: 0 0 30"></a-entity>
     
     <!-- 3Dモデルを読み込んで、位置やスケールなど定義する -->
     <a-gltf-model  id="radio" src="./radio2.gltf"  position="0 0 0" rotation="0 180 0" scale="3.0 3.0 3.0"></a-gltf-model>
