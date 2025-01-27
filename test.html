@@ -1,22 +1,112 @@
-<!-- 360°閲覧できるビューワーのように、WEBサイトに3Dを埋め込む例 -->
 <html>
-  <head>
-    <!-- A-FrameをCDNから読み込む -->
-    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
-    <!-- aframe-orbit-controlsをCDNから読み込む -->
-    <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script>
-  </head>
-<body>
+    <head>
+        <title>kadai4game</title>
+        <script type = "text/javascript">
+            <!--
+            var Score = 0; //スコア
+            var Interval = 1000; //切り替わり時間
+            var inGame = false; //game中かどうか
+            var isClicked = false; //クリックしたか
+            var count = 20; //変化回数
+            var correct = 0; //正解数
+            var timer; //setInterval管理用
 
-  <a-scene>
-    <!-- aframe-orbit-controlsのプロパティを記述 -->
-    <a-entity camera look-controls orbit-controls="target: 0 1.6 -0.5; maxPolarAngle:180; minDistance: 0.5; maxDistance: 200; initialPosition: 0 0 30"></a-entity>
-    
-    <!-- 3Dモデルを読み込んで、位置やスケールなど定義する -->
-    <a-gltf-model  id="test" src="test2.gltf"  position="0 0 0" rotation="20 124 7" scale="1.0 1.0 1.0"></a-gltf-model>
-    <!-- 背景色-->
-    <a-sky color="#9EA1E7"></a-sky>
+            function ChangeValue(){//選択肢の値を変更
 
-  </a-scene>
-</body>
+                isClicked = false; //クリックリセット
+
+                for(var i = 0; i < 5; i++){
+                    document.question.elements[i].value = Math.round(Math.random() * 100);
+                }
+
+                count--;
+
+                if(count <= 0){//countが0になったら全部0にしてタイマーストップ
+                    inGame = false;
+                    clearInterval(timer);
+                    for(var i = 0; i < 5; i++){
+                        document.question.elements[i].value = "SW" + i;
+                    }
+                }
+
+                //Score, count表示更新
+                document.getElementById("score").innerText = "Score: " + Number(Score);
+                document.getElementById("count").innerText = "Count: " + Number(count);
+                document.getElementById("correct").innerText = "Correct: " + Number(correct);
+            }
+
+            function Start(){ //初期化
+                count = 20;
+                correct = 0;
+                
+                timer = setInterval(ChangeValue, Interval);
+                document.getElementById("score").innerText = "Score: " + Number(Score);
+                document.getElementById("count").innerText = "Count: " + Number(count);
+                document.getElementById("correct").innerText = "Correct: " + Number(correct);
+                ChangeValue();
+                inGame = true;
+            }
+
+            function isCorrect(pAns){ //ボタンが押されたら呼び出される pAnsはボタンの値
+                if(inGame && !isClicked){ //Game中かつ未クリックなら実行
+                    var max = 0;
+                    var tmp;
+                    isClicked = true;
+
+                    for(var i = 0; i < 5; i++){ //選択肢の内，最大の数を記録
+                        tmp = document.question.elements[i].value;
+                        if(tmp > max){
+                            max = tmp;
+                        }
+                    }
+
+                    if(pAns == max) //引数が最大ならScoreプラス,違ったらScoreマイナス
+                    {
+                        Score = Score + Number(pAns);
+                        correct++;
+                    }else{
+                        Score = Score - Number(pAns);
+                    }
+
+                    if(count > 0){ //countが0になったら全部0にしてタイマーストップ
+
+                    }else{
+                        inGame = false;
+                        clearInterval(timer);
+                        for(var i = 0; i < 5; i++){
+                            document.question.elements[i].value = "SW" + i;
+                        }
+                    }
+
+                    //Score, count, correct表示更新
+                    document.getElementById("score").innerText = "Score: " + Number(Score);
+                    document.getElementById("count").innerText = "Count: " + Number(count);
+                    document.getElementById("correct").innerText = "Correct: " + Number(correct);
+                }
+            }
+            -->
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <script type = "text/javascript">
+            <!--
+             -->
+        </script>
+
+        <form name = "question">
+            <input type = "button" name = "gs_1" value = "SW1" style = "position:absolute; left:400px; top:200px; width:50px; height:50px; font-size:15px;" onclick="isCorrect(value)">
+            <input type = "button" name = "gs_2" value = "SW2" style = "position:absolute; left:340px; top:200px; width:50px; height:50px; font-size:15px;" onclick="isCorrect(value)">
+            <input type = "button" name = "gs_3" value = "SW3" style = "position:absolute; left:280px; top:200px; width:50px; height:50px; font-size:15px;" onclick="isCorrect(value)">
+            <input type = "button" name = "gs_4" value = "SW4" style = "position:absolute; left:220px; top:200px; width:50px; height:50px; font-size:15px;" onclick="isCorrect(value)">
+            <input type = "button" name = "gs_5" value = "SW5" style = "position:absolute; left:160px; top:200px; width:50px; height:50px; font-size:15px;" onclick="isCorrect(value)">
+        </form>
+        <div id = "score" style = "position:absolute; left:300px; top:250px; color:red">Score: -</div>
+        <div id = "count" style = "position:absolute; left:250px; top:150px;">Count: -</div>
+        <div id = "correct" style = "position:absolute; left:200px; top:250px;">Correct: -</div>
+        <button style = "position:absolute; left:280px; top:100px" onclick=Start()>Start</button>
+    </body>
 </html>
