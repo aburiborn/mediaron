@@ -15,18 +15,30 @@
   アマチュア無線が特に活躍するシチュエーションはどれでしょうか？<br>
   ヒント：3Dモデルをよく見ると...?<br>
 
-  <button class="block-left-align" style = "position:static; width:400px; height:25px; font-size:15px;"><span>1.友人と日常的な会話をする時</span></button><br>
-  <button class="block-left-align" style = "position:static; width:400px; height:25px; font-size:15px;"><span>2.短い距離でのデータ通信を行う時</span></button><br>
-  <button class="block-left-align" style = "position:static; width:400px; height:25px; font-size:15px;"><span>3.大規模な災害が発生し、通常の通信手段が使えない時</span></button><br>
-  <button class="block-left-align" style = "position:static; width:400px; height:25px; font-size:15px;"><span>4.スマートフォンの通信料金を節約したい時</span></button><br>
+  <button class="block-left-align" style = "position:static; width:400px; height:25px; font-size:15px;" onclick="showResult(false)"><span>1.友人と日常的な会話をする時</span></button><br>
+  <button class="block-left-align" style = "position:static; width:400px; height:25px; font-size:15px;" onclick="showResult(false)"><span>2.短い距離でのデータ通信を行う時</span></button><br>
+  <button class="block-left-align" style = "position:static; width:400px; height:25px; font-size:15px;" onclick="showResult(true)"><span>3.大規模な災害が発生し、通常の通信手段が使えない時</span></button><br>
+  <button class="block-left-align" style = "position:static; width:400px; height:25px; font-size:15px;" onclick="showResult(false)"><span>4.スマートフォンの通信料金を節約したい時</span></button><br>
   <div id="quizAnswer" class="info-box">
     アマチュア無線は、災害時に通常の通信手段が機能しない場合でも、自前の設備を利用して通信を確保できます。このため、緊急時の連絡や情報交換で非常に重要な役割を果たします。
   </div>
 
   <script>
-    function showAnswer(){
-      
-    }
+    function showResult(isCorrect) {
+        var infoBox = document.getElementById("quizAnswer");
+
+        if (isCorrect) {
+            infoBox.innerHTML = "正解！アマチュア無線は、災害時に通常の通信手段が機能しない場合でも、自前の設備を利用して通信を確保できます。このため、緊急時の連絡や情報交換で非常に重要な役割を果たします。";
+            infoBox.classList.remove("incorrect");
+            infoBox.classList.add("correct");
+        } else {
+            infoBox.innerHTML = "不正解";
+            infoBox.classList.remove("correct");
+            infoBox.classList.add("incorrect");
+        }
+
+        infoBox.style.display = "block";  // 表示
+      }
   </script>
 
   <style>
@@ -42,6 +54,14 @@
       margin-bottom: 10px;
       border: 5px double #333333;
       background-color: #ffaaaa;
+    }
+
+    .correct {
+      background-color: #aaffaa; /* 正解時の背景色（緑） */
+    }
+
+    .incorrect {
+      background-color: #ffaaaa; /* 不正解時の背景色（赤） */
     }
  </style>
 </body>
