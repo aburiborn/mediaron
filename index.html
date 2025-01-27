@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アマチュア無線機</title>
+    <title>アマチュア無線機 | UECミュージアム</title>
     <style>
         /* 全体のスタイル設定 */
         body {
@@ -20,6 +20,7 @@
             color: white;
             padding: 20px;
             margin: 0;
+            font-size: 24px;
         }
 
         h2 {
@@ -29,6 +30,12 @@
             margin-top: 30px;
         }
 
+        p {
+            font-size: 18px;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+
         ul {
             text-align: left;
             display: inline-block;
@@ -36,6 +43,8 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
         }
 
         ul li {
@@ -57,6 +66,7 @@
             border-radius: 10px;
             display: inline-block;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
         }
 
         .quiz-section p {
@@ -98,29 +108,66 @@
         }
 
         .correct {
-            background-color: #aaffaa; /* 正解時の背景色（緑） */
+            background-color: #aaffaa;
             border: 2px solid #008000;
             color: #006400;
         }
 
         .incorrect {
-            background-color: #ffaaaa; /* 不正解時の背景色（赤） */
+            background-color: #ffaaaa;
             border: 2px solid #cc0000;
             color: #800000;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #004080;
+            color: white;
+        }
+
+        .footer a {
+            color: #ffdd00;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #0073e6;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-button:hover {
+            background-color: #005bb5;
         }
     </style>
 </head>
 <body>
 
-    <h1>アマチュア無線機</h1>
+    <h1>アマチュア無線機 展示ガイド</h1>
+    
+    <p>このページでは、アマチュア無線機の歴史や特徴について詳しく学ぶことができます。</p>
 
-    <iframe src="./radio.html"></iframe>
+    <iframe src="./radio.html" loading="lazy"></iframe>
 
     <h2>アマチュア無線機について</h2>
     <ul>
         <li>アマチュア無線とは、免許を取得した個人が趣味や技術研究を目的として使用する無線のことを指す。</li>
-        <li>今のようにスマートフォンなどで気軽にコミュニケーションをとることができない時代に、見知らぬ人と通信を楽しむことができると人気だった。</li>
-        <li>UECミュージアムでは、アマチュア無線発展の歴史を飾った数々の貴重な機器を展示している。</li>
+        <li>かつては、遠くの人と通信を楽しむために非常に人気があった。</li>
+        <li>UECミュージアムでは、無線発展の歴史を物語る貴重な機器を展示しています。</li>
     </ul>
 
     <div class="quiz-section">
@@ -133,9 +180,13 @@
         <button class="block-left-align" onclick="showResult(true)">3. 大規模な災害が発生し、通常の通信手段が使えない時</button>
         <button class="block-left-align" onclick="showResult(false)">4. スマートフォンの通信料金を節約したい時</button>
 
-        <div id="quizAnswer" class="info-box">
-            アマチュア無線は、災害時に通常の通信手段が機能しない場合でも、自前の設備を利用して通信を確保できます。このため、緊急時の連絡や情報交換で非常に重要な役割を果たします。
-        </div>
+        <div id="quizAnswer" class="info-box"></div>
+    </div>
+
+    <div class="footer">
+        <p>実物を間近で見たり、他にも多くの貴重な展示を体験してみませんか？<br>
+        詳しくは、UECミュージアムの公式ウェブサイトをご覧ください。</p>
+        <a href="https://www.museum.uec.ac.jp" class="footer-button" target="_blank">公式ウェブサイトへ</a>
     </div>
 
     <script>
@@ -143,7 +194,7 @@
             var infoBox = document.getElementById("quizAnswer");
 
             if (isCorrect) {
-                infoBox.innerHTML = "<h3>正解！</h3>アマチュア無線は、災害時に通常の通信手段が機能しない場合でも、自前の設備を利用して通信を確保できます。このため、緊急時の連絡や情報交換で非常に重要な役割を果たします。";
+                infoBox.innerHTML = "<h3>正解！</h3>災害時に自前の設備で通信を確保できる点が重要です。";
                 infoBox.classList.remove("incorrect");
                 infoBox.classList.add("correct");
             } else {
@@ -152,7 +203,7 @@
                 infoBox.classList.add("incorrect");
             }
 
-            infoBox.style.display = "block";  // 表示
+            infoBox.style.display = "block"; 
         }
     </script>
 
